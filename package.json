@@ -1,0 +1,14 @@
+{
+  "name": "brain-for-web",
+  "private": true,
+  "description": "Web-ready 3D brain atlas built on Brain for Blender -- FreeSurfer-to-GLB pipeline + interactive React viewer",
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "clean": "rm -rf packages/*/dist examples/*/dist"
+  },
+  "license": "Apache-2.0"
+}

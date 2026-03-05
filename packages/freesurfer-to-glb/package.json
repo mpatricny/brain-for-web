@@ -1,0 +1,52 @@
+{
+  "name": "freesurfer-to-glb",
+  "version": "0.1.0",
+  "description": "Convert FreeSurfer Desikan-Killiany atlas meshes to an optimized GLB file for web brain atlases",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": {
+    "freesurfer-to-glb": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "dependencies": {
+    "three": ">=0.150.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "@types/node": "^20.0.0",
+    "@types/three": ">=0.150.0"
+  },
+  "keywords": [
+    "brain",
+    "atlas",
+    "freesurfer",
+    "desikan-killiany",
+    "neuroscience",
+    "glb",
+    "gltf",
+    "3d",
+    "mesh",
+    "obj"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mpatricny/brain-for-web.git",
+    "directory": "packages/freesurfer-to-glb"
+  }
+}
