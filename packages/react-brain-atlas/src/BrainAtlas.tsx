@@ -44,7 +44,7 @@ function BrainRegionsWithGLB({ glbPath, regions }: { glbPath: string; regions: B
     const cMap: Record<string, [number, number, number]> = {};
     for (const region of regions) {
       if (region.meshName && nodes[region.meshName]) {
-        const node = nodes[region.meshName] as Mesh;
+        const node = nodes[region.meshName] as unknown as Mesh;
         if (node.geometry) {
           gMap[region.meshName] = node.geometry;
           cMap[region.meshName] = computeCentroid(node.geometry);
