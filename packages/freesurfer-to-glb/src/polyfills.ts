@@ -14,7 +14,14 @@ export function applyPolyfills() {
     createElementNS: () => ({ style: {} }),
     createElement: () => ({ getContext: () => null }),
   };
-  g.navigator = { userAgent: '' };
+  try {
+    g.navigator = { userAgent: '' };
+  } catch {
+    // Node >= 21 has a read-only navigator; patch userAgent only
+    if (g.navigator && !g.navigator.userAgent) {
+      Object.defineProperty(g.navigator, 'userAgent', { value: '', configurable: true });
+    }
+  }
 
   if (!g.atob) {
     g.atob = (s: string) => Buffer.from(s, 'base64').toString('binary');
