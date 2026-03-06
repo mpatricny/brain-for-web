@@ -15,7 +15,7 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
 [![npm](https://img.shields.io/npm/v/react-brain-atlas?color=cb3837&logo=npm)](https://www.npmjs.com/package/react-brain-atlas)
 
-[**Live Demo**](#) · [**CodeSandbox**](#) · [**Region Docs**](./packages/react-brain-atlas/README.md)
+[**Live Demo**](https://brain-for-web-demo.vercel.app) · [**CodeSandbox**](#) · [**Region Docs**](./packages/react-brain-atlas/README.md)
 
 </div>
 
