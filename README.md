@@ -1,15 +1,27 @@
-# brain-for-web
+<div align="center">
 
-Web-ready 3D brain atlas built on [Brain for Blender](https://brainder.org/research/brain-for-blender/). Converts FreeSurfer [Desikan-Killiany](https://surfer.nmr.mgh.harvard.edu/fswiki/CorticalParcellation) atlas meshes into an interactive, explorable brain viewer for the browser.
+# 🧠 react-brain-atlas
 
-## What's in the box
+### Interactive 3D Brain Atlas for React
 
-| Package | What it does |
-|---|---|
-| [`freesurfer-to-glb`](./packages/freesurfer-to-glb) | CLI tool + Node.js library. Downloads DK atlas OBJ meshes from Brainder.org, merges parcels into functional brain regions, deduplicates vertices, normalizes coordinates, and exports an optimized GLB file. |
-| [`react-brain-atlas`](./packages/react-brain-atlas) | React + Three.js viewer component. Interactive 3D brain with region selection, explode view, color modes, camera animation, and opt-in UI panels. |
+**Embed a rotatable, clickable Desikan–Killiany brain in minutes.**
 
-## Quick start
+*No Unity. No heavy toolchain. Web-native.*
+
+[![React](https://img.shields.io/badge/React-18+-61DAFB?logo=react&logoColor=white)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Three.js](https://img.shields.io/badge/Three.js-WebGL-000000?logo=threedotjs&logoColor=white)](https://threejs.org/)
+[![Desikan-Killiany](https://img.shields.io/badge/DK_Atlas-68_regions-8B5CF6)]()
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
+[![npm](https://img.shields.io/npm/v/react-brain-atlas?color=cb3837&logo=npm)](https://www.npmjs.com/package/react-brain-atlas)
+
+[**Live Demo**](#) · [**CodeSandbox**](#) · [**Region Docs**](./packages/react-brain-atlas/README.md)
+
+</div>
+
+---
+
+## ⚡ Quickstart
 
 ### 1. Generate the brain mesh
 
@@ -17,15 +29,15 @@ Web-ready 3D brain atlas built on [Brain for Blender](https://brainder.org/resea
 npx freesurfer-to-glb --output public/models/brain-atlas.glb
 ```
 
-This downloads ~10 MB of source meshes (cached for future runs), merges 70+ DK atlas parcels into 24 brain regions, and produces a single optimized GLB file.
+Downloads ~10 MB of source meshes (cached), merges 70+ DK atlas parcels into 24 brain regions, outputs a single optimized GLB (~1–2 MB).
 
-### 2. Use the viewer
+### 2. Install the viewer
 
 ```bash
 npm install react-brain-atlas
 ```
 
-#### Minimal setup
+### 3. Render
 
 ```tsx
 import { BrainAtlas } from 'react-brain-atlas';
@@ -39,7 +51,7 @@ function App() {
 }
 ```
 
-#### Full setup with opt-in components
+### Full setup with opt-in components
 
 ```tsx
 import {
@@ -53,7 +65,6 @@ function BrainPage() {
   return (
     <div>
       <BrainToolbar />
-
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 16 }}>
         <div style={{ position: 'relative', minHeight: 600 }}>
           <BrainAtlas glbPath="/models/brain-atlas.glb" />
@@ -66,63 +77,71 @@ function BrainPage() {
 }
 ```
 
-See [examples/demo](./examples/demo) for a complete working app.
+> See [examples/demo](./examples/demo) for a complete working app.
 
-## Features
+---
 
-### Pipeline (`freesurfer-to-glb`)
+## 🎯 Use Cases
 
-- **One command** to go from raw FreeSurfer data to web-ready GLB
-- Downloads and caches Brainder.org DK atlas archives automatically
-- Merges DK parcels into 15 scientifically meaningful brain regions + 9 fill regions
-- Vertex deduplication via spatial hashing (typically 40-60% size reduction)
-- Global bounding-box normalization to a consistent coordinate system
-- Hand-written binary glTF 2.0 builder -- no browser APIs, runs fully in Node.js
-- Custom region maps via JSON for your own parcellation scheme
-- Full CLI with `--output`, `--cache`, `--region-map`, `--radius`, `--quiet` flags
+| | Use Case | How |
+|---|---|---|
+| 🏥 | **Medical education** | Students explore brain regions interactively instead of memorizing flat diagrams |
+| 🗣️ | **Patient communication** | Clinicians show patients exactly which brain area is affected |
+| 📊 | **Neurofeedback dashboards** | Map real-time EEG/fMRI data onto 3D regions with custom colors |
+| 🔬 | **Research frontends** | Build web UIs for neuroimaging studies — no desktop app required |
+
+---
+
+## 💡 Why brain-for-web?
+
+| | Static images | Unity WebGL | Desktop tools | **brain-for-web** |
+|---|---|---|---|---|
+| Interactive | ❌ | ✅ | ✅ | ✅ |
+| Web-native | ✅ | ⚠️ 30+ MB runtime | ❌ | ✅ **~1–2 MB** |
+| React integration | ❌ | ❌ | ❌ | ✅ Native |
+| Clickable regions | ❌ | Custom work | Varies | ✅ 24 regions out of the box |
+| Open source | Varies | Varies | Rarely | ✅ Apache 2.0 |
+| Build time | N/A | Minutes | N/A | **One `npx` command** |
+
+---
+
+## 📦 Packages
+
+| Package | Description |
+|---|---|
+| [`react-brain-atlas`](./packages/react-brain-atlas) | React + Three.js viewer. Interactive 3D brain with region selection, explode view, color modes, camera animation, and opt-in UI panels. |
+| [`freesurfer-to-glb`](./packages/freesurfer-to-glb) | CLI + Node.js library. Downloads DK atlas OBJ meshes, merges parcels, deduplicates vertices, normalizes coordinates, exports optimized GLB. |
+
+---
+
+## ✨ Features
 
 ### Viewer (`react-brain-atlas`)
 
 - **Real mesh rendering** with procedural-sphere fallback if GLB is missing
-- **Bilateral mirroring**: only left-hemisphere meshes stored, mirrored at render time (halves file size)
+- **Bilateral mirroring** — only left-hemisphere meshes stored, mirrored at render time (halves file size)
 - **Explode view** with centroid-based animation slider
-- **Color modes**: by theme (learning / play / creativity) or neural system (DMN / ECN / SN)
+- **Color modes** — by theme (learning / play / creativity) or neural system (DMN / ECN / SN)
 - **Region selection** with animated camera fly-to
 - **Opt-in subcomponents**: `<BrainToolbar />`, `<BrainInfoPanel />`, `<BrainLegend />`
-- **Zustand store** (`useBrainStore()`) fully accessible for custom integrations
+- **Zustand store** (`useBrainStore()`) — fully accessible for custom integrations
 - **15 regions with full metadata**: descriptions, functions, evidence, citations with DOIs
 - Built with React Three Fiber, drei, and postprocessing (bloom + vignette)
 
-## How the pipeline works
+### Pipeline (`freesurfer-to-glb`)
 
-```
-Brainder.org OBJ archives
-        |
-        v
-  Download & cache (~5 MB each)
-        |
-        v
-  Extract cortical + subcortical OBJs
-        |
-        v
-  Match parcels by name (with fuzzy fallbacks)
-        |
-        v
-  Parse OBJ -> merge parcels per region -> deduplicate vertices
-        |
-        v
-  Compute global bounding box (incl. mirrored points) -> normalize
-        |
-        v
-  Build binary glTF 2.0 (GLB) manually
-        |
-        v
-  brain-atlas.glb  (~1-2 MB, 24 named meshes)
-```
+- **One command** — raw FreeSurfer data → web-ready GLB
+- Downloads and caches Brainder.org DK atlas archives automatically
+- Merges DK parcels into 15 scientifically meaningful brain regions + 9 fill regions
+- Vertex deduplication via spatial hashing (40–60% size reduction)
+- Global bounding-box normalization
+- Hand-written binary glTF 2.0 builder — no browser APIs, runs fully in Node.js
+- Custom region maps via JSON for your own parcellation scheme
+- Full CLI: `--output`, `--cache`, `--region-map`, `--radius`, `--quiet`
 
-## Custom region maps
+---
 
-Create a JSON file to define your own parcel-to-region mapping:
+## 🧪 Custom Region Maps
 
 ```json
 [
@@ -145,35 +164,17 @@ Create a JSON file to define your own parcel-to-region mapping:
 freesurfer-to-glb --region-map my-regions.json --output custom-atlas.glb
 ```
 
-- `source`: `"cortical"` (pial DK archive) or `"subcortical"`
-- `merge`: `"left"` (left hemisphere only, mirrored at render time) or `"both"` (merge both hemispheres)
+---
 
-## Project structure
+## 🚀 Get Started
 
-```
-brain-for-web/
-  packages/
-    freesurfer-to-glb/     CLI tool + library
-      src/
-        cli.ts             CLI entry point
-        pipeline.ts        Download, extract, merge, normalize, export
-        glb-builder.ts     Hand-written binary glTF 2.0 builder
-        obj-parser.ts      OBJ loading + vertex deduplication
-        polyfills.ts       Node.js polyfills for three.js
-        region-maps/       Preset region mappings
-    react-brain-atlas/     React component library
-      src/
-        BrainAtlas.tsx     Main <BrainAtlas /> component
-        BrainRegion.tsx    Individual region mesh renderer
-        BrainToolbar.tsx   Search, color modes, view presets
-        BrainInfoPanel.tsx Region details + searchable list
-        BrainLegend.tsx    Color legend overlay
-        CameraController.tsx  Animated camera transitions
-        store.ts           Zustand state management
-        defaults/          Built-in region data + color palettes
-  examples/
-    demo/                  Complete working demo app
-```
+<div align="center">
+
+**[Live Demo](#)** · **[Open in CodeSandbox](#)** · **[npm install react-brain-atlas](https://www.npmjs.com/package/react-brain-atlas)**
+
+</div>
+
+---
 
 ## Development
 
@@ -186,19 +187,11 @@ npm run build
 
 ## Attribution
 
-This project uses mesh data from:
+Mesh data from [Brain for Blender](https://brainder.org/research/brain-for-blender/) by Anderson M. Winkler (CC BY-SA 3.0).
 
-> Anderson M. Winkler, **"Brain for Blender"**
-> https://brainder.org/research/brain-for-blender/
-> Licensed under CC BY-SA 3.0
-
-The Desikan-Killiany atlas parcellation is described in:
-
-> Desikan RS, et al. (2006). "An automated labeling system for subdividing the
-> human cerebral cortex on MRI scans into gyral based regions of interest."
-> *NeuroImage*, 31(3), 968-980. DOI: [10.1016/j.neuroimage.2006.01.021](https://doi.org/10.1016/j.neuroimage.2006.01.021)
+Desikan–Killiany atlas: Desikan RS, et al. (2006). *NeuroImage*, 31(3), 968–980. DOI: [10.1016/j.neuroimage.2006.01.021](https://doi.org/10.1016/j.neuroimage.2006.01.021)
 
 ## License
 
-- **Code**: Apache License 2.0 -- see [LICENSE](./LICENSE)
-- **Mesh data and derived GLB files**: CC BY-SA 3.0 (Brainder.org) -- see [NOTICE](./NOTICE)
+- **Code**: Apache License 2.0 — see [LICENSE](./LICENSE)
+- **Mesh data and derived GLB files**: CC BY-SA 3.0 (Brainder.org) — see [NOTICE](./NOTICE)

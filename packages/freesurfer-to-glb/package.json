@@ -34,15 +34,22 @@
   },
   "keywords": [
     "brain",
-    "atlas",
+    "brain-atlas",
     "freesurfer",
     "desikan-killiany",
     "neuroscience",
+    "neuroimaging",
+    "neuroanatomy",
+    "cortical-parcellation",
     "glb",
     "gltf",
     "3d",
     "mesh",
-    "obj"
+    "obj",
+    "converter",
+    "pipeline",
+    "medical",
+    "webgl"
   ],
   "repository": {
     "type": "git",

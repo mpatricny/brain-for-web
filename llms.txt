@@ -1,0 +1,37 @@
+# brain-for-web
+
+> Interactive 3D brain atlas for the web, built with React and Three.js.
+
+## What is this?
+
+brain-for-web provides two npm packages for embedding an interactive 3D brain in web applications:
+
+- **react-brain-atlas**: A React component library that renders a clickable, rotatable 3D brain using the Desikan–Killiany atlas (68 cortical regions mapped to 24 viewer regions). Built on React Three Fiber.
+- **freesurfer-to-glb**: A CLI/Node.js tool that converts FreeSurfer atlas meshes into optimized GLB files for web use.
+
+## Key facts
+
+- Atlas: Desikan–Killiany (68 parcels → 24 interactive regions, 15 with full metadata)
+- Output: Single GLB file, ~1–2 MB
+- Rendering: WebGL via Three.js / React Three Fiber
+- Features: Region selection, explode view, color modes (theme/neural system), camera fly-to, bilateral mirroring
+- License: Apache 2.0 (code), CC BY-SA 3.0 (mesh data)
+- Source meshes: Brain for Blender (Brainder.org) by Anderson M. Winkler
+
+## Quickstart
+
+```bash
+npx freesurfer-to-glb --output public/models/brain-atlas.glb
+npm install react-brain-atlas
+```
+
+```tsx
+import { BrainAtlas } from 'react-brain-atlas';
+<BrainAtlas glbPath="/models/brain-atlas.glb" />
+```
+
+## Links
+
+- Repository: https://github.com/mpatricny/brain-for-web
+- npm (viewer): https://www.npmjs.com/package/react-brain-atlas
+- npm (pipeline): https://www.npmjs.com/package/freesurfer-to-glb

@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "react-brain-atlas",
+  "description": "Interactive 3D brain atlas React component using the Desikan–Killiany atlas. Embed a rotatable, clickable brain in any web app.",
+  "url": "https://github.com/mpatricny/brain-for-web",
+  "codeRepository": "https://github.com/mpatricny/brain-for-web",
+  "programmingLanguage": ["TypeScript", "React"],
+  "runtimePlatform": "Node.js",
+  "license": "https://www.apache.org/licenses/LICENSE-2.0",
+  "applicationCategory": "Medical Software",
+  "keywords": "brain atlas, neuroscience, 3D brain, react, desikan-killiany, freesurfer, neuroanatomy, webgl, medical education",
+  "author": {
+    "@type": "Person",
+    "name": "mpatricny",
+    "url": "https://github.com/mpatricny"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
